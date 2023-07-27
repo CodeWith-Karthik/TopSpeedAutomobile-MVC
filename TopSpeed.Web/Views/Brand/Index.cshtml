@@ -26,6 +26,21 @@
                     <tr>
                         <td>@item.Name</td>
                         <td>@item.EstablishedYear</td>
+                        <td class="d-flex align-items-center justify-content-center">
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Brand" asp-action="Details" asp-route-id="@item.Id"
+                                   class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Details">
+                                    <i class="bi bi-info-circle"></i></a>
+                                <a asp-controller="Brand" asp-action="Edit" asp-route-id="@item.Id"
+                                   class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a asp-controller="Brand" asp-action="Delete" asp-route-id="@item.Id"
+                                   class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </td>
                     </tr>
                 }
 
