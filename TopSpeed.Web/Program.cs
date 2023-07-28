@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using TopSpeed.Application.Contracts.Presistence;
 using TopSpeed.Infrastructure.Common;
+using TopSpeed.Infrastructure.Repositories;
+using TopSpeed.Infrastructure.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options=> 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddTransient(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddControllersWithViews();
 
