@@ -12,11 +12,12 @@
     <hr />
     @if(Model.Count() > 0)
     {
-        <table class="table table-bordered table-striped">
+        <table id="table" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Established Year</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Established Year</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,8 +25,8 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Name</td>
-                        <td>@item.EstablishedYear</td>
+                        <td width="40%">@item.Name</td>
+                        <td width="40%">@item.EstablishedYear</td>
                         <td class="d-flex align-items-center justify-content-center">
                             <div class="w-75 btn-group" role="group">
                                 <a asp-controller="Brand" asp-action="Details" asp-route-id="@item.Id"
@@ -59,3 +60,9 @@
     }
 
 </div>
+
+@section Scripts{
+    <script>
+        $('.table').DataTable();
+    </script>
+}

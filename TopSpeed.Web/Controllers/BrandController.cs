@@ -59,6 +59,8 @@ namespace TopSpeed.Web.Controllers
                 _dbContext.Brand.Add(brand);
                 _dbContext.SaveChanges();
 
+                TempData["success"] = "Recored Created Successfully";
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -133,6 +135,8 @@ namespace TopSpeed.Web.Controllers
                 _dbContext.Brand.Update(objFromDb);
                 _dbContext.SaveChanges();
 
+                TempData["warning"] = "Recored Updated Successfully";
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -169,6 +173,8 @@ namespace TopSpeed.Web.Controllers
 
             _dbContext.Brand.Remove(brand);
             _dbContext.SaveChanges();
+
+            TempData["error"] = "Recored Deleted Successfully";
 
             return RedirectToAction(nameof(Index));
         }
