@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using TopSpeed.Web.Models;
+using TopSpeed.Domain.Models;
 
 namespace TopSpeed.Web.Controllers
 {

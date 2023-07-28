@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,13 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\brand\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\TopSpeed.Application\TopSpeed.Application.csproj" />
     <ProjectReference Include="..\TopSpeed.Domain\TopSpeed.Domain.csproj" />
-    <ProjectReference Include="..\TopSpeed.Infrastructure\TopSpeed.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

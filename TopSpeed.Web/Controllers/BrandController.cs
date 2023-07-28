@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TopSpeed.Web.Data;
-using TopSpeed.Web.Models;
+using TopSpeed.Application.ApplicationConstants;
+using TopSpeed.Domain.Models;
+using TopSpeed.Infrastructure.Common;
 
 namespace TopSpeed.Web.Controllers
 {
@@ -59,7 +60,7 @@ namespace TopSpeed.Web.Controllers
                 _dbContext.Brand.Add(brand);
                 _dbContext.SaveChanges();
 
-                TempData["success"] = "Recored Created Successfully";
+                TempData["success"] = CommonMessage.RecordCreated;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -135,7 +136,7 @@ namespace TopSpeed.Web.Controllers
                 _dbContext.Brand.Update(objFromDb);
                 _dbContext.SaveChanges();
 
-                TempData["warning"] = "Recored Updated Successfully";
+                TempData["warning"] = CommonMessage.RecordUpdated;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -174,7 +175,7 @@ namespace TopSpeed.Web.Controllers
             _dbContext.Brand.Remove(brand);
             _dbContext.SaveChanges();
 
-            TempData["error"] = "Recored Deleted Successfully";
+            TempData["error"] = CommonMessage.RecordDeleted;
 
             return RedirectToAction(nameof(Index));
         }

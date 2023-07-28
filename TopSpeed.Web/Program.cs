@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using TopSpeed.Web.Data;
+using TopSpeed.Infrastructure.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 

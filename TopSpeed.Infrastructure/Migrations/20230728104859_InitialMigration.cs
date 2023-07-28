@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TopSpeed.Web.Migrations
+namespace TopSpeed.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration
@@ -18,7 +18,7 @@ namespace TopSpeed.Web.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EstablishedYear = table.Column<int>(type: "int", nullable: false),
-                    BrandLogo = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    BrandLogo = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
