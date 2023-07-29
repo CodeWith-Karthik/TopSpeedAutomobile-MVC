@@ -1,5 +1,9 @@
 ﻿@model List<VehicleType>
 
+@{
+    int count = 0;
+}
+
 <div class="container">
     <div class="row mb-4">
         <div class="col-md-6 text-uppercase">
@@ -10,11 +14,12 @@
         </div>
     </div>
     <hr />
-    @if(Model.Count() > 0)
+    @if (Model.Count() > 0)
     {
         <table id="table" class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th class="text-center">S.No</th>
                     <th class="text-center">Name</th>
                     <th class="text-center">Action</th>
                 </tr>
@@ -24,12 +29,14 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td width="40%">@item.Name</td>
+                        <td class="text-center" width="20%">@(++count)</td>
+                        <td class="" width="60%">@item.Name</td>
                         <td class="d-flex align-items-center justify-content-center">
                             <div class="w-75 btn-group" role="group">
                                 <a asp-area="Admin" asp-controller="VehicleType" asp-action="Details" asp-route-id="@item.Id"
                                    class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Details">
-                                    <i class="bi bi-info-circle"></i></a>
+                                    <i class="bi bi-info-circle"></i>
+                                </a>
                                 <a asp-area="Admin" asp-controller="VehicleType" asp-action="Edit" asp-route-id="@item.Id"
                                    class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="bi bi-pencil-square"></i>
