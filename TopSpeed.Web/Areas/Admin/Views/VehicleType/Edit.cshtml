@@ -1,0 +1,29 @@
+﻿@model VehicleType
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-uppercase text-center">Edit Vehicle Type</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 border-1 border">
+            <form method="post" enctype="multipart/form-data">
+                <input asp-for="@Model.Id" hidden />
+                <div class="mb-3">
+                    <label asp-for="@Model.Name" class="form-label"></label>
+                    <input asp-for="@Model.Name" class="form-control" />
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <a asp-area="Admin" asp-controller="VehicleType" asp-action="Index" class="btn btn-danger">Back</a>
+                    <button type="submit" class="btn btn-warning">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
