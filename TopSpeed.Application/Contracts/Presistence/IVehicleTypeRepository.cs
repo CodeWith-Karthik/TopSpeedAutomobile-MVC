@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopSpeed.Domain.Models;
 
 namespace TopSpeed.Application.Contracts.Presistence
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IVehicleTypeRepository : IGenericRepository<VehicleType>
     {
-        public IBrandRepository Brand { get; }
-
-        public IVehicleTypeRepository VehicleType { get; }
-
-        Task SaveAsync();
+        Task Update(VehicleType vehicleType);
     }
 }
