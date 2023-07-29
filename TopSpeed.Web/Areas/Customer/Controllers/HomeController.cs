@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using TopSpeed.Domain.Models;
 
-namespace TopSpeed.Web.Controllers
+namespace TopSpeed.Web.Areas.Customer.Controllers
 {
     public class HomeController : Controller
     {

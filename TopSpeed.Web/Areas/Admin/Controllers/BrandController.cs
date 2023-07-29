@@ -5,7 +5,7 @@ using TopSpeed.Application.Contracts.Presistence;
 using TopSpeed.Domain.Models;
 using TopSpeed.Infrastructure.Common;
 
-namespace TopSpeed.Web.Controllers
+namespace TopSpeed.Web.Areas.Admin.Controllers
 {
     public class BrandController : Controller
     {

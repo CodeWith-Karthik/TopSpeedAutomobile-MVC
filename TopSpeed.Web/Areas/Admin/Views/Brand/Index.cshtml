@@ -6,7 +6,7 @@
             <h2>Brand List</h2>
         </div>
         <div class="col-md-6 text-end">
-            <a asp-controller="Brand" asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Create</a>
+            <a asp-area="Admin" asp-controller="Brand" asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Create</a>
         </div>
     </div>
     <hr />
@@ -29,14 +29,14 @@
                         <td width="40%">@item.EstablishedYear</td>
                         <td class="d-flex align-items-center justify-content-center">
                             <div class="w-75 btn-group" role="group">
-                                <a asp-controller="Brand" asp-action="Details" asp-route-id="@item.Id"
+                                <a asp-area="Admin" asp-controller="Brand" asp-action="Details" asp-route-id="@item.Id"
                                    class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Details">
                                     <i class="bi bi-info-circle"></i></a>
-                                <a asp-controller="Brand" asp-action="Edit" asp-route-id="@item.Id"
+                                <a asp-area="Admin" asp-controller="Brand" asp-action="Edit" asp-route-id="@item.Id"
                                    class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                <a asp-controller="Brand" asp-action="Delete" asp-route-id="@item.Id"
+                                <a asp-area="Admin" asp-controller="Brand" asp-action="Delete" asp-route-id="@item.Id"
                                    class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="bi bi-trash"></i>
                                 </a>
