@@ -3,6 +3,7 @@ using TopSpeed.Application.Contracts.Presistence;
 using TopSpeed.Infrastructure.Common;
 using TopSpeed.Infrastructure.Repositories;
 using TopSpeed.Infrastructure.UnitOfWork;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options=> 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddIdentity<IdentityUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddTransient(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -49,6 +53,10 @@ static async void UpdateDatabaseAsync(IHost host)
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+var serviceProvider = app.Services;
+
+await SeedData.SeedRole(serviceProvider);
 
 UpdateDatabaseAsync(app);
 
