@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using TopSpeed.Application.ApplicationConstants;
 using TopSpeed.Application.Contracts.Presistence;
+using TopSpeed.Application.Services.Interface;
 using TopSpeed.Domain.ApplicationEnums;
 using TopSpeed.Domain.Models;
 using TopSpeed.Domain.ViewModel;
@@ -18,11 +19,13 @@ namespace TopSpeed.Web.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IUserNameService _userName;
 
-        public PostController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
+        public PostController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment, IUserNameService userName)
         {
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
+            _userName = userName;
 
         }
 
@@ -117,6 +120,10 @@ namespace TopSpeed.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Details(Guid id)
         {
             Post post = await _unitOfWork.Post.GetPostById(id);
+
+            post.CreatedBy = await _userName.GetUserName(post.CreatedBy);
+
+            post.ModifiedBy = await _userName.GetUserName(post.ModifiedBy);
 
             return View(post);
         }
