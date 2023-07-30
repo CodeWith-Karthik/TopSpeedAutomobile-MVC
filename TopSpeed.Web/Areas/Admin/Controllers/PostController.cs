@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using TopSpeed.Application.ApplicationConstants;
 using TopSpeed.Application.Contracts.Presistence;
 using TopSpeed.Domain.ApplicationEnums;
@@ -11,6 +13,7 @@ using TopSpeed.Infrastructure.Common;
 namespace TopSpeed.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = CustomRole.MasterAdmin + "," + CustomRole.Admin)]
     public class PostController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

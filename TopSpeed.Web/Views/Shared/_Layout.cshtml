@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using TopSpeed.Application.ApplicationConstants;
+@{
+    string[] roles = { CustomRole.MasterAdmin, CustomRole.Admin };
+
+    bool isInMutipleRoles = roles.Any(role => User.IsInRole(role));
+}
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -26,23 +34,26 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Content Management</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-dark" asp-area="Admin" asp-controller="Brand" asp-action="Index">Brand</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-dark" asp-area="Admin" asp-controller="VehicleType" asp-action="Index">Vehicle Type</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-dark" asp-area="Admin" asp-controller="Post" asp-action="Index">Post</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                       
+                        @if (isInMutipleRoles)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Content Management</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li class="nav-item">
+                                        <a class="dropdown-item text-dark" asp-area="Admin" asp-controller="Brand" asp-action="Index">Brand</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item text-dark" asp-area="Admin" asp-controller="VehicleType" asp-action="Index">Vehicle Type</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item text-dark" asp-area="Admin" asp-controller="Post" asp-action="Index">Post</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }                     
                     </ul>
+
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
