@@ -7,6 +7,7 @@ using TopSpeed.Infrastructure.Common;
 
 namespace TopSpeed.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class VehicleTypeController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

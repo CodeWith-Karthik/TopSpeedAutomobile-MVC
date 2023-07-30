@@ -1,0 +1,174 @@
+﻿@using TopSpeed.Domain.ApplicationEnums;
+@model Post
+
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center text-uppercase">
+            Post Details
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="card-text text-uppercase"><strong>Id</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="card-text">: @Model.Id</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="card-text text-uppercase"><strong>Name</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="card-text">: @Model.Name</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="card-text text-uppercase"><strong>Brand</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="card-text">: @Model.Brand.Name</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="card-text text-uppercase"><strong>Vehicle Type</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="card-text">: @Model.VehicleType.Name</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="card-text text-uppercase"><strong>Engine / Fuel Type</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="card-text">: @((EngineAndFuelType)Model.EngineAndFuelType)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="card-text text-uppercase"><strong>Transmission</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="card-text">: @((Transmission)Model.Transmission)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Engine</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.Engine</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Top Speed</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.TopSpeed</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Mileage</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.Mileage</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Range</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.Range</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Seating Capacity</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.SeatingCapacity</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Base Price</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.PriceFrom</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Top-End Price</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.PriceTo</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Ratings</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.Ratings</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Created On</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @((Model.CreatedOn == DateTime.MinValue) ? "NA" : Model.CreatedOn.ToString())</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Created By</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @((Model.CreatedBy == String.Empty) ? "NA" : Model.CreatedBy)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Modified On</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @((Model.ModifiedOn == DateTime.MinValue) ? "NA" : Model.ModifiedOn.ToString())</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Modified By</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @((Model.ModifiedBy == String.Empty) ? "NA" : Model.ModifiedBy)</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <img src="@Model.VehicleImage" width="100%" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a asp-area="Admin" asp-controller="Post" asp-action="Index" class="btn btn-danger">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

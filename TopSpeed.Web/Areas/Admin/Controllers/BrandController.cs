@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TopSpeed.Application.ApplicationConstants;
 using TopSpeed.Application.Contracts.Presistence;
+using TopSpeed.Domain.ApplicationEnums;
 using TopSpeed.Domain.Models;
 using TopSpeed.Infrastructure.Common;
 
 namespace TopSpeed.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class BrandController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -30,6 +33,7 @@ namespace TopSpeed.Web.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+           
             return View();
         }
 

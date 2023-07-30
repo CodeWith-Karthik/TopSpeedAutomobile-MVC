@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\brand\" />
+    <Folder Include="wwwroot\images\post\" />
   </ItemGroup>
 
   <ItemGroup>
