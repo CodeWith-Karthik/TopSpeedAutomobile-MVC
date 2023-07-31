@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using TopSpeed.Application.Services;
 using TopSpeed.Application.Services.Interface;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,6 +70,17 @@ static async void UpdateDatabaseAsync(IHost host)
 }
 
 #endregion
+
+
+builder.Host.UseSerilog((context, config) =>
+{
+    config.WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day);
+
+    if(context.HostingEnvironment.IsProduction() == false)
+    {
+        config.WriteTo.Console();
+    }
+});
 
 builder.Services.AddControllersWithViews();
 
