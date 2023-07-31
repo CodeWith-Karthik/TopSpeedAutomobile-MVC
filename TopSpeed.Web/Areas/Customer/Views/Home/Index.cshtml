@@ -1,8 +1,161 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using TopSpeed.Domain.ViewModel;
+@model HomePostVM
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <h3 class="text-success">Code with Karthik</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-2">
+                        <div class="mb-1">
+                            <label class="form-label">Vehicle Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="mb-1">
+                            <label class="form-label">Brand</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="mb-1">
+                            <label class="form-label">Vehicle Type</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="mb-3">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="mb-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-2">
+                        <div class="mb-3">
+                            <input asp-for="@Model.searchBox" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="mb-3">
+                            <select asp-for="@Model.BrandId" asp-items="@Model.BrandList" class="form-select">
+                                <option value="@Guid.Empty">--All-</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="mb-3">
+                            <select asp-for="@Model.VehicleTypeId" asp-items="@Model.VehicleTypeList" class="form-select">
+                                <option value="@Guid.Empty">--All-</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="mb-3">
+                           <button class="btn btn-success form-control" type="submit">Search</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="mb-3">
+                            <a href="@Url.Action("Index",new { page =1 , resetFilter = true})" class="btn btn-primary form-control">Reset</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+@if (Model.Posts.Count > 0)
+{
+    <div class="container p-4">
+        <div class="row">
+            @foreach (var item in Model.Posts)
+            {
+                <div class="col-md-4" style="margin-bottom:20px">
+                    <div class="card border-2 border border-dark shadow mb-2 bg-white rounded">
+                        <div class="card-header">
+                            <img src="@item.VehicleImage" height="250px" width="100%">
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="text-primary text-uppercase" style="font-weight:bold">@item.Name</h6>
+                                    <p class="text-uppercase" style="font-weight:bold;color:red"><span>@item.PriceFrom.ToString("c")</span></p>
+                                    <a class="btn btn-success"
+                                       href="@Url.Action("Details","Home", new {id = item.Id,page = ViewBag.CurrentPage})">
+                                    Details</a>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <img src="@item.Brand.BrandLogo" width="60px" height="60px">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                @if (ViewBag.CurrentPage > 1)
+                {
+                    <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                }
+                else
+                {
+                    @*  <span class="page-link" aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>*@
+                }
+            </li>
+
+            @if (ViewBag.TotalPages > 1)
+            {
+                for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    if (i == ViewBag.CurrentPage)
+                    {
+                        <li class="page-item active"><span class="page-link">@i</span></li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a></li>
+                    }
+                }
+            }
+
+            <li class="page-item">
+                @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                {
+                    <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                }
+                else
+                {
+                    @* <span class="page-link" aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>*@
+                }
+            </li>
+        </ul>
+    </nav>
+
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center text-uppercase text-warning pt-4">No Records to Show</h2>
+            </div>
+        </div>
+    </div>
+}

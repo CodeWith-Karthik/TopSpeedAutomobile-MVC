@@ -57,5 +57,60 @@ namespace TopSpeed.Infrastructure.Repositories
         {
             return await _dbContext.Post.Include(x => x.Brand).Include(x => x.VehicleType).ToListAsync();
         }
+
+        public async Task<List<Post>> GetAllPost(Guid? skipRecord, Guid? brandId)
+        {
+            var query = _dbContext.Post.Include(x => x.Brand).Include(x => x.VehicleType).OrderByDescending(x => x.ModifiedOn);
+
+            if(brandId == Guid.Empty)
+            {
+                return await query.ToListAsync();
+            }
+
+            if(brandId != Guid.Empty)
+            {
+                query = (IOrderedQueryable<Post>)query.Where(x => x.BrandId == brandId);
+            }
+
+            var posts = await query.ToListAsync();
+
+            if(skipRecord.HasValue)
+            {
+                var recordToRemove = posts.FirstOrDefault(x => x.Id == skipRecord.Value);
+                if (recordToRemove != null)
+                {
+                    posts.Remove(recordToRemove);
+                }
+            }
+
+            return posts;
+        }
+
+        public async Task<List<Post>> GetAllPost(string searchName, Guid? brandId, Guid? vehicleTypeId)
+        {
+            var query = _dbContext.Post.Include(x => x.Brand).Include(x => x.VehicleType).OrderByDescending(x => x.ModifiedOn);
+
+            if (searchName == string.Empty && brandId == Guid.Empty && vehicleTypeId == Guid.Empty)
+            {
+                return await query.ToListAsync();
+            }
+
+            if (brandId != Guid.Empty)
+            {
+                query = (IOrderedQueryable<Post>)query.Where(x => x.BrandId == brandId);
+            }
+
+            if (vehicleTypeId != Guid.Empty)
+            {
+                query = (IOrderedQueryable<Post>)query.Where(x => x.VehicleTypeId == vehicleTypeId);
+            }
+
+            if(!string.IsNullOrEmpty(searchName))
+            {
+                query = (IOrderedQueryable<Post>)query.Where(x=>x.Name.Contains(searchName));
+            }
+
+            return await query.ToListAsync();
+        }
     }
 }

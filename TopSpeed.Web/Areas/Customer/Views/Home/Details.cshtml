@@ -1,0 +1,172 @@
+﻿@using TopSpeed.Domain.ApplicationEnums;
+@using TopSpeed.Domain.ViewModel;
+@model CustomerDetailsVM
+
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center text-uppercase">
+            Post Details
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="card-text text-uppercase"><strong>Name</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="card-text">: @Model.Post.Name</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="card-text text-uppercase"><strong>Brand</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="card-text">: @Model.Post.Brand.Name</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="card-text text-uppercase"><strong>Vehicle Type</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="card-text">: @Model.Post.VehicleType.Name</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="card-text text-uppercase"><strong>Engine / Fuel Type</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="card-text">: @((EngineAndFuelType)Model.Post.EngineAndFuelType)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="card-text text-uppercase"><strong>Transmission</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="card-text">: @((Transmission)Model.Post.Transmission)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Engine</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.Post.Engine  / CC</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Top Speed</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.Post.TopSpeed / Kmph</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Mileage</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.Post.Mileage  / Per Liter</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Range</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.Post.Range / KM</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Seating Capacity</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.Post.SeatingCapacity / Person</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Base Price</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.Post.PriceFrom.ToString("c")</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Top-End Price</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.Post.PriceTo.ToString("c")</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="card-text text-uppercase"><strong>Ratings</strong></p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="card-text">: @Model.Post.Ratings  / 5</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <img src="@Model.Post.VehicleImage" width="100%" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="@Url.Action("GoBack","Home",new { page = ViewBag.CurrentPage })" class="btn btn-danger">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+@if (Model.Posts.Count > 0)
+{
+    <h5 class="text-secondary">You May Also Like This</h5>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Posts)
+            {
+                <div class="col-md-4" style="margin-bottom:20px">
+                    <div class="card border-2 border border-dark shadow mb-2 bg-white rounded">
+                        <div class="card-header">
+                            <img src="@item.VehicleImage" height="250px" width="100%">
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="text-primary text-uppercase" style="font-weight:bold">@item.Name</h6>
+                                    <p class="text-uppercase" style="font-weight:bold;color:red"><span>@item.PriceFrom.ToString("c")</span></p>
+                                    <a class="btn btn-success"
+                                       href="@Url.Action("Details","Home", new {id = item.Id,page = ViewBag.CurrentPage})">
+                                        Details
+                                    </a>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <img src="@item.Brand.BrandLogo" width="60px" height="60px">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+}
